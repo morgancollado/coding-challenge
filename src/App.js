@@ -35,7 +35,7 @@ export default class TodoList extends Component {
       const copyofTodos = this.state.todos.filter(todo =>  {
         console.log(t.id)
         if (t.id === todo.id){
-          todo.isActive = false
+          todo.isActive = !todo.isActive
           return todo
         } else
         return {todo}
