@@ -5,7 +5,8 @@ export default class TodoList extends Component {
 
     state = {
         content: '', 
-        todos: []
+        todos: [],
+        completedTask: 0
     }
 
     onChange = (e) => {
@@ -44,6 +45,10 @@ export default class TodoList extends Component {
       this.setState({
         todos: copyofTodos
       })
+      const completedTodos = copyofTodos.filter(todo => todo.isActive === false).length
+      this.setState({
+        completedTask: completedTodos
+      })
     }
 
     renderToDo = () => {
@@ -78,7 +83,7 @@ export default class TodoList extends Component {
                         <input type="text" value={this.state.content} onChange={this.onChange}/>
                         <input type="submit"/>
                     </form>
-                    <p>{this.state.todo > 0 ? ` remaining out of ${this.state.todo.count}`:null } </p>
+                    <p>{this.state.todos.length >  0 ? ` ${this.state.completedTask} remaining out of ${this.state.todos.length}`:null } </p>
                     {this.renderToDo()}
                 </div>
                 <style>{`
