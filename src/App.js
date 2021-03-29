@@ -5,7 +5,7 @@ export default class TodoList extends Component {
 
     state = {
         content: '', 
-        todo: []
+        todos: []
     }
 
     onChange = (e) => {
@@ -17,7 +17,7 @@ export default class TodoList extends Component {
     onSubmit= (e) => {
       e.preventDefault()
       this.setState({
-        todo: this.state.todo.concat({
+        todos: this.state.todos.concat({
           content: this.state.content,
           isActive: true,
           id: Math.floor(Math.random() * Math.floor(1000))
@@ -28,18 +28,39 @@ export default class TodoList extends Component {
       })
     }
 
+    
+    toggleActive = (t) => {
+
+      
+      const copyofTodos = this.state.todos.filter(todo =>  {
+        console.log(t.id)
+        if (t.id === todo.id){
+          todo.isActive = false
+          return todo
+        } else
+        return {todo}
+      })
+      console.log(copyofTodos)
+      this.setState({
+        todos: copyofTodos
+      })
+    }
+
     renderToDo = () => {
-      return this.state.todo.map(todo => {
-        const toggleActive = (id) => {
-          // this.setState({
-          //   todo: this.state.todo.filter(todo =>  todo.id === id ? !isActive : isActive)
+      return this.state.todos.map(todo => {
+        const eventL = this.toggleActive
+
+
+          // this.setState(prevState => ({
+          //   todo: prevState.todo.map(
+          //     todo => todo.id === todo ? {...todo, isActive: false} : todo)
           // })
-        }
+          
 
 
         return(
           <ul>
-            <li onClick={() => toggleActive(todo.id)} key={todo.id} className={this.state.todo.isActive ? "is-done": null}>{todo.content}</li>
+            <li onClick={() => eventL(todo)} key={todo.id} className={todo.isActive ? null : "is-done" }>{todo.content}</li>
           </ul>
         )
       })
