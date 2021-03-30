@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This app allows the user to post to-do lists and cross them off, much like one would with a pad and pen. The pad keeps track of what tasks have been completed to keep the length of all available tasks top of mind. 
+
 ## Available Scripts
 
 In the project directory, you can run:
